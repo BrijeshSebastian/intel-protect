@@ -1,0 +1,431 @@
+{
+  "metadata": {
+    "project": "Intel-Protect",
+    "phase": "Phase 5 \u2014 Machine Learning Foundation & Model Training",
+    "training_date": "2026-10-03T18:12:33.251232+00:00",
+    "random_seed": 42,
+    "synthetic_data_disclaimer": "All models are trained exclusively on locally generated synthetic data. Metrics represent evaluation on held-out synthetic test splits and do not establish real-world performance."
+  },
+  "model_1_document_sensitivity": {
+    "dataset_size": 2000,
+    "train_size": 1600,
+    "test_size": 400,
+    "features": [
+      "pii_count",
+      "unique_pii_types",
+      "high_risk_count",
+      "financial_pii_count",
+      "identity_pii_count",
+      "credential_count",
+      "contact_pii_count",
+      "doc_length",
+      "avg_confidence",
+      "max_confidence",
+      "checksum_valid_ratio"
+    ],
+    "labels": [
+      "LOW",
+      "MEDIUM",
+      "HIGH",
+      "CRITICAL"
+    ],
+    "baseline_dummy": {
+      "strategy": "most_frequent",
+      "accuracy": 0.3575,
+      "macro_f1": 0.1317
+    },
+    "logistic_regression": {
+      "parameters": {
+        "class_weight": "balanced",
+        "max_iter": 1000,
+        "random_state": 42
+      },
+      "accuracy": 0.865,
+      "macro_f1": 0.8436,
+      "weighted_f1": 0.8637,
+      "classification_report": {
+        "LOW": {
+          "precision": 0.8910256410256411,
+          "recall": 0.972027972027972,
+          "f1-score": 0.9297658862876255,
+          "support": 143.0
+        },
+        "MEDIUM": {
+          "precision": 0.8951612903225806,
+          "recall": 0.8222222222222222,
+          "f1-score": 0.8571428571428571,
+          "support": 135.0
+        },
+        "HIGH": {
+          "precision": 0.8076923076923077,
+          "recall": 0.7777777777777778,
+          "f1-score": 0.7924528301886793,
+          "support": 81.0
+        },
+        "CRITICAL": {
+          "precision": 0.7857142857142857,
+          "recall": 0.8048780487804879,
+          "f1-score": 0.7951807228915663,
+          "support": 41.0
+        },
+        "accuracy": 0.865,
+        "macro avg": {
+          "precision": 0.8448983811887038,
+          "recall": 0.844226505202115,
+          "f1-score": 0.843635574127682,
+          "support": 400.0
+        },
+        "weighted avg": {
+          "precision": 0.8647520087439442,
+          "recall": 0.865,
+          "f1-score": 0.8636547408431334,
+          "support": 400.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          139,
+          4,
+          0,
+          0
+        ],
+        [
+          17,
+          111,
+          7,
+          0
+        ],
+        [
+          0,
+          9,
+          63,
+          9
+        ],
+        [
+          0,
+          0,
+          8,
+          33
+        ]
+      ]
+    },
+    "random_forest": {
+      "parameters": {
+        "n_estimators": 100,
+        "max_depth": 12,
+        "class_weight": "balanced",
+        "random_state": 42
+      },
+      "accuracy": 0.885,
+      "macro_f1": 0.8718,
+      "weighted_f1": 0.8842,
+      "classification_report": {
+        "LOW": {
+          "precision": 0.8961038961038961,
+          "recall": 0.965034965034965,
+          "f1-score": 0.9292929292929293,
+          "support": 143.0
+        },
+        "MEDIUM": {
+          "precision": 0.9047619047619048,
+          "recall": 0.8444444444444444,
+          "f1-score": 0.8735632183908046,
+          "support": 135.0
+        },
+        "HIGH": {
+          "precision": 0.85,
+          "recall": 0.8395061728395061,
+          "f1-score": 0.84472049689441,
+          "support": 81.0
+        },
+        "CRITICAL": {
+          "precision": 0.85,
+          "recall": 0.8292682926829268,
+          "f1-score": 0.8395061728395061,
+          "support": 41.0
+        },
+        "accuracy": 0.885,
+        "macro avg": {
+          "precision": 0.8752164502164502,
+          "recall": 0.8695634687504605,
+          "f1-score": 0.8717707043544125,
+          "support": 400.0
+        },
+        "weighted avg": {
+          "precision": 0.8849642857142856,
+          "recall": 0.885,
+          "f1-score": 0.8841550917662861,
+          "support": 400.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          138,
+          5,
+          0,
+          0
+        ],
+        [
+          16,
+          114,
+          5,
+          0
+        ],
+        [
+          0,
+          7,
+          68,
+          6
+        ],
+        [
+          0,
+          0,
+          7,
+          34
+        ]
+      ]
+    }
+  },
+  "model_2_exposure_classifier": {
+    "dataset_size": 3000,
+    "train_size": 2400,
+    "test_size": 600,
+    "vocabulary_size": 5000,
+    "labels": [
+      "LOW",
+      "MEDIUM",
+      "HIGH",
+      "CRITICAL"
+    ],
+    "baseline_dummy": {
+      "strategy": "most_frequent",
+      "accuracy": 0.37,
+      "macro_f1": 0.135
+    },
+    "random_forest": {
+      "parameters": {
+        "max_features": 5000,
+        "ngram_range": [
+          1,
+          2
+        ],
+        "n_estimators": 100,
+        "max_depth": 20,
+        "class_weight": "balanced",
+        "random_state": 42
+      },
+      "accuracy": 0.8767,
+      "macro_f1": 0.8771,
+      "weighted_f1": 0.876,
+      "classification_report": {
+        "LOW": {
+          "precision": 0.8734177215189873,
+          "recall": 0.9324324324324325,
+          "f1-score": 0.9019607843137255,
+          "support": 222.0
+        },
+        "MEDIUM": {
+          "precision": 0.8681318681318682,
+          "recall": 0.8144329896907216,
+          "f1-score": 0.8404255319148937,
+          "support": 194.0
+        },
+        "HIGH": {
+          "precision": 0.8991596638655462,
+          "recall": 0.8629032258064516,
+          "f1-score": 0.8806584362139918,
+          "support": 124.0
+        },
+        "CRITICAL": {
+          "precision": 0.8709677419354839,
+          "recall": 0.9,
+          "f1-score": 0.8852459016393442,
+          "support": 60.0
+        },
+        "accuracy": 0.8766666666666667,
+        "macro avg": {
+          "precision": 0.8779192488629715,
+          "recall": 0.8774421619824014,
+          "f1-score": 0.8770726635204887,
+          "support": 600.0
+        },
+        "weighted avg": {
+          "precision": 0.8767836323837573,
+          "recall": 0.8766666666666667,
+          "f1-score": 0.87599041249672,
+          "support": 600.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          207,
+          15,
+          0,
+          0
+        ],
+        [
+          30,
+          158,
+          6,
+          0
+        ],
+        [
+          0,
+          9,
+          107,
+          8
+        ],
+        [
+          0,
+          0,
+          6,
+          54
+        ]
+      ]
+    }
+  },
+  "model_3_breach_priority": {
+    "dataset_size": 2000,
+    "train_size": 1600,
+    "test_size": 400,
+    "features": [
+      "breach_count",
+      "email_exposed",
+      "phone_exposed",
+      "password_exposed",
+      "financial_exposed",
+      "identity_doc_exposed",
+      "address_exposed",
+      "credential_exposed",
+      "total_data_types",
+      "max_breach_severity",
+      "days_since_breach"
+    ],
+    "labels": [
+      "LOW",
+      "MEDIUM",
+      "HIGH",
+      "CRITICAL"
+    ],
+    "baseline_dummy": {
+      "strategy": "most_frequent",
+      "accuracy": 0.35,
+      "macro_f1": 0.1296
+    },
+    "random_forest": {
+      "parameters": {
+        "n_estimators": 100,
+        "max_depth": 10,
+        "class_weight": "balanced",
+        "random_state": 42
+      },
+      "accuracy": 0.79,
+      "macro_f1": 0.788,
+      "weighted_f1": 0.7884,
+      "classification_report": {
+        "LOW": {
+          "precision": 0.7866666666666666,
+          "recall": 0.8805970149253731,
+          "f1-score": 0.8309859154929577,
+          "support": 134.0
+        },
+        "MEDIUM": {
+          "precision": 0.7906976744186046,
+          "recall": 0.7285714285714285,
+          "f1-score": 0.758364312267658,
+          "support": 140.0
+        },
+        "HIGH": {
+          "precision": 0.8243243243243243,
+          "recall": 0.7176470588235294,
+          "f1-score": 0.7672955974842768,
+          "support": 85.0
+        },
+        "CRITICAL": {
+          "precision": 0.7446808510638298,
+          "recall": 0.8536585365853658,
+          "f1-score": 0.7954545454545454,
+          "support": 41.0
+        },
+        "accuracy": 0.79,
+        "macro avg": {
+          "precision": 0.7865923791183564,
+          "recall": 0.7951185097264242,
+          "f1-score": 0.7880250926748594,
+          "support": 400.0
+        },
+        "weighted avg": {
+          "precision": 0.7917762255328062,
+          "recall": 0.79,
+          "f1-score": 0.7883921963583208,
+          "support": 400.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          118,
+          16,
+          0,
+          0
+        ],
+        [
+          31,
+          102,
+          7,
+          0
+        ],
+        [
+          1,
+          11,
+          61,
+          12
+        ],
+        [
+          0,
+          0,
+          6,
+          35
+        ]
+      ]
+    }
+  },
+  "model_4_anomaly_detector": {
+    "dataset_size": 3000,
+    "train_size": 2400,
+    "test_size": 600,
+    "features": [
+      "total_pii_count",
+      "sensitive_pii_count",
+      "financial_pii_count",
+      "credential_count",
+      "source_count",
+      "exposure_type_count",
+      "identity_data_count"
+    ],
+    "contamination": 0.05,
+    "ground_truth_test_anomalies": 30,
+    "detected_anomalies": 30,
+    "metrics": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0
+    },
+    "score_distribution": {
+      "normal_mean": 0.1073,
+      "normal_std": 0.0645,
+      "anomaly_mean": 0.6993,
+      "anomaly_std": 0.0277
+    },
+    "confusion_matrix": [
+      [
+        570,
+        0
+      ],
+      [
+        0,
+        30
+      ]
+    ]
+  }
+}
